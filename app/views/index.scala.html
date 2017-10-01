@@ -1,20 +1,28 @@
-@*
- * This template takes a single argument, a String containing a
- * message to display.
- *@
-@(message: String)
 
-@*
- * Call the `main` template with two arguments. The first
- * argument is a `String` with the title of the page, the second
- * argument is an `Html` object containing the body of the page.
- *@
-@main("Welcome to Play") {
+@(message: String, board: ticTacToe.Board)
 
-    @*
-     * Get an `Html` object by calling the built-in Play welcome
-     * template and passing a `String` message.
-     *@
-    @play20.welcome(message, style = "Scala")
+@main("Tic Tac Toe") {
+<h1>Unbeatable Tic Tac Toe</h1>
 
+<table class="ticTacToe">
+ <tr class="row0">
+  <td class="col0 @board.cellState(0, 0)"></td>
+  <td class="col1 @board.cellState(1, 0)"></td>
+  <td class="col2 @board.cellState(2, 0)"></td>
+ </tr>
+ <tr class="row1">
+  <td class="col0 @board.cellState(0, 1)"></td>
+  <td class="col1 @board.cellState(1, 1)"></td>
+  <td class="col2 @board.cellState(2, 1)"></td>
+ </tr>
+ <tr class="row2">
+  <td class="col0 @board.cellState(0, 2)"></td>
+  <td class="col1 @board.cellState(1, 2)"></td>
+  <td class="col2 @board.cellState(2, 2)"></td>
+ </tr>
+</table>
+<input type="button" class="newGame youFirst" value="New Game (You First)"/>
+<input type="button" class="newGame meFirst" value="New Game (Me First)"/>
+<p id="message">@message</p>
 }
+
