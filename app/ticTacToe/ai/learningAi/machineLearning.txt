@@ -1,0 +1,30 @@
+Problem:  best house for sale in a neighborhood
+
+  - extract feature spaces:  Size, age, lot size, # bedrooms
+     - need to scale features based on different units (i.e. Size vs Age)
+     - look for correlated features (i.e. size & # of bedrooms)
+     - predict values
+     - cluster common items (documents, tweets, images, people)
+  
+Problem:  find similar regions in an image
+  - pixel features:  R, G, B, X, Y
+  
+Problem:  Spam filter
+
+cluster vs classifications:  Classifications are labeled, clusters are observed.
+
+Regression: Gradient Descent (y = mx + b) find m & b with minimal error based on given data points.
+
+Classification problems:
+
+   - K-Nearest Neighbors (simple, slow)
+   - training (neural net, support vector machine, logistic regression)
+   
+Neural Networks (not too difficult to implement)
+  - weighted connections to label observations.  Feed incorrect labels back into the network for weight adjustment.
+  
+Problem:  Use neural nets to learn logical And, Or, Not by example. Xor requires multiple layers.
+
+K-means clustering.  Find cluster centers.  Stupid simple.  Sucks because you need to choose K.
+
+Good coursera learning course.  Many libraries exist.
