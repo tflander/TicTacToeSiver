@@ -6,7 +6,7 @@ import play.api.mvc._
 import ticTacToe.Board
 import ticTacToe.CellState._
 import controllers.support.BoardState
-
+import play.api.Logger
 
 @Singleton
 class Application @Inject() extends Controller {
@@ -17,7 +17,6 @@ class Application @Inject() extends Controller {
     val board = Board()
     val ai = getAi(board)
     Ok(views.html.index("", ai.takeSquare(board)))
-    // Ok(views.html.index("Your new application is ready."))
   }
 
   def move(setup: String) = Action {
@@ -42,8 +41,8 @@ class Application @Inject() extends Controller {
         case O => "You Win??  You must have cheated!!!"
       }
     }
-//    Logger.info(setup)
-//    if(!message.isEmpty) Logger.info(message)
+    Logger.info(setup)
+    if(!message.isEmpty) Logger.info(message)
     Ok(views.html.index(message, updatedBoard))
   }
 
