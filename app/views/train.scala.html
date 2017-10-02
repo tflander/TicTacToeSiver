@@ -1,0 +1,28 @@
+@(message: String, board: ticTacToe.Board, ai: ticTacToe.ai.LearningAi)
+
+@main("Tic Tac Toe") {
+    <h1>Teach the Computer Tic Tac Toe</h1>
+    
+    <table class="ticTacToe">
+	    <tr class="row0">
+	    	<td class="col0 @board.cellState(0, 0)"></td>
+	    	<td class="col1 @board.cellState(1, 0)"></td>
+	    	<td class="col2 @board.cellState(2, 0)"></td>
+	    </tr>
+	    <tr class="row1">
+	    	<td class="col0 @board.cellState(0, 1)"></td>
+	    	<td class="col1 @board.cellState(1, 1)"></td>
+	    	<td class="col2 @board.cellState(2, 1)"></td>
+	    </tr>
+	    <tr class="row2">
+	    	<td class="col0 @board.cellState(0, 2)"></td>
+	    	<td class="col1 @board.cellState(1, 2)"></td>
+	    	<td class="col2 @board.cellState(2, 2)"></td>
+	    </tr>
+    </table>
+    <input type="button" class="newGame youFirst" value="New Game (You First)"/>
+    <input type="button" class="newGame meFirst" value="New Game (Me First)"/>
+    <input id="gameMode" type="hidden" value="train/">
+   	<p id="message">@message</p>
+   	<div>@ai.message</div>
+}

@@ -7,10 +7,7 @@ import ticTacToe.Board
 import ticTacToe.CellState._
 import controllers.support.BoardState
 
-/**
- * This controller creates an `Action` to handle HTTP requests to the
- * application's home page.
- */
+
 @Singleton
 class Application @Inject() extends Controller {
 

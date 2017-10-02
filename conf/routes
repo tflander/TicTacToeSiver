@@ -3,12 +3,12 @@
 # ~~~~
 
 # TODO: integrate these routes:
-# GET     /aibuilder					controllers.AiBuilder.index
-# GET     /aibuilder/:rule            controllers.AiBuilder.execRule(rule)
-# GET     /aibuilder/:xRule/:oRule    controllers.AiBuilder.execRules(xRule, oRule)
-# GET     /train                      controllers.AiTrainer.index
-# GET     /train/                     controllers.AiTrainer.index
-# GET     /train/:setup               controllers.AiTrainer.move(setup: String)
+GET     /aibuilder					controllers.AiBuilder.index
+GET     /aibuilder/:rule            controllers.AiBuilder.execRule(rule)
+GET     /aibuilder/:xRule/:oRule    controllers.AiBuilder.execRules(xRule, oRule)
+GET     /train                      controllers.AiTrainer.index
+GET     /train/                     controllers.AiTrainer.index
+GET     /train/:setup               controllers.AiTrainer.move(setup: String)
 GET     /                           controllers.Application.index
 GET     /:setup                     controllers.Application.move(setup: String)
 
