@@ -1,4 +1,4 @@
-name := """TicTacToeSilver"""
+name := """TicTacToeSilver"""  
 
 version := "1.0-SNAPSHOT"
 
