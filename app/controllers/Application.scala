@@ -11,11 +11,16 @@ import play.api.Logger
 @Singleton
 class Application @Inject() extends Controller {
 
-  private def getAi(board: Board) = ticTacToe.ai.dsl.AiBuilder.buildAi(board.nextPlayer, "is unbeatable")
+  private def getAi(level: Int, board: Board) = {
+    val ai = level match {
+      case 4 => "is unbeatable"
+    }
+    ticTacToe.ai.dsl.AiBuilder.buildAi(board.nextPlayer, ai)
+  }
 
   def index = Action {
     val board = Board()
-    val ai = getAi(board)
+    val ai = getAi(4, board)
     Ok(views.html.index("", ai.takeSquare(board)))
   }
 
@@ -41,7 +46,7 @@ class Application @Inject() extends Controller {
       .setCellState(0, 2, cellStates(6))
       .setCellState(1, 2, cellStates(7))
       .setCellState(2, 2, cellStates(8))
-    val ai = getAi(board)
+    val ai = getAi(level, board)
     val updatedBoard = if(board.gameOver) board else ai.takeSquare(board)
     val message = updatedBoard.gameOver match {
       case false => ""
