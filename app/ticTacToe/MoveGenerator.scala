@@ -4,7 +4,7 @@ import controllers.support.BoardState
 import ticTacToe.CellState.CellState
 
 // TODO: test
-class MoveGenerator {
+object MoveGenerator {
 
   def moveUsingAi(aiDescr: String, setup: String): (Option[CellState], Board) = {
     val cellStates = BoardState get setup
