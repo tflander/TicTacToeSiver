@@ -20,6 +20,16 @@ class Application @Inject() extends Controller {
   }
 
   def move(setup: String) = Action {
+    val messageAndBoard = moveUsingAiImpl(4, setup)
+    Ok(views.html.index(messageAndBoard._1, messageAndBoard._2))
+  }
+
+  def moveUsingAi(level: Int, setup: String) = Action {
+    val messageAndBoard = moveUsingAiImpl(level, setup)
+    Ok(views.html.index(messageAndBoard._1, messageAndBoard._2))
+  }
+
+  def moveUsingAiImpl(level: Int, setup: String): (String, Board) = {
     val cellStates = BoardState get setup
     val board = Board()
       .setCellState(0, 0, cellStates(0))
@@ -43,7 +53,7 @@ class Application @Inject() extends Controller {
     }
     Logger.info(setup)
     if(!message.isEmpty) Logger.info(message)
-    Ok(views.html.index(message, updatedBoard))
+    (message, updatedBoard)
   }
 
 }
