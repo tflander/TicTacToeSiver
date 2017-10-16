@@ -1,7 +1,7 @@
 function gameMode() {
 	gameMode = "";
 	if($("#gameMode").length > 0) {
-		gameMode = $("#gameMode").val(); 
+		gameMode = $("#gameMode").val();
 	}
 	return gameMode;
 }
@@ -12,13 +12,14 @@ function allowClickOnEmptyCells() {
 			disableClicks();
 			$(this).removeClass().addClass("O").html("O");
 			var cells = $(".ticTacToe").text().replace(/ /g, "");
-			document.location.href = "/" + gameMode() + cells;
+			var baseUrl = document.location.href.substr(0, document.location.href.lastIndexOf("/"));
+			document.location.href = baseUrl + "/" + gameMode() + cells;
 		}
 	});
 }
 
 function disableClicks() {
-	$(".Clear").unbind("click");	
+	$(".Clear").unbind("click");
 }
 
 $(document).ready(function() {
@@ -31,7 +32,8 @@ $(document).ready(function() {
 	allowClickOnEmptyCells();
 
 	$(".meFirst").click(function() {
-		document.location.href = "/" + gameMode();
+			var baseUrl = document.location.href.substr(0, document.location.href.lastIndexOf("/"));
+			document.location.href = baseUrl + "/" + gameMode();
 	});
 
 	$(".youFirst").click(function() {
@@ -44,9 +46,9 @@ $(document).ready(function() {
 	$("#usageWrapper").click(function(){
 		$("#usage").slideToggle();
 	});
-	
+
 	$("#usage").slideUp();
-	
+
 	$("li span.x").click(function() {
 		$("#editRuleAsX").text($(this).siblings(".sampleRule").text());
 	});
@@ -54,7 +56,7 @@ $(document).ready(function() {
 	$("li span.o").click(function() {
 		$("#editRuleAsO").text($(this).siblings(".sampleRule").text());
 	});
-	
+
 	$("input#parseRule").click(function() {
 		var xRule = $("textarea#editRuleAsX").val();
 		var oRule = $("textarea#editRuleAsO").val();
