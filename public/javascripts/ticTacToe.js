@@ -14,7 +14,7 @@ function allowClickOnEmptyCells() {
 			var cells = $(".ticTacToe").text().replace(/ /g, "");
 			var baseUrl = document.location.href.substr(0, document.location.href.lastIndexOf("/"));
 			if(baseUrl.endsWith("0")) {
-                baseUrl += "/ttt"
+                baseUrl += "/1"
             }
 			document.location.href = baseUrl + "/" + gameMode() + cells;
 		}

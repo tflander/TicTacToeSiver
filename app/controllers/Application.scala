@@ -16,7 +16,12 @@ class Application @Inject() extends Controller {
     Ok(views.html.index(messageAndBoard._1, messageAndBoard._2))
   }
 
-  def move(setup: String) = Action {
+ def newGame(level: Int) = Action {
+    val messageAndBoard = moveImpl("is unbeatable", "AAAAAAAAA")
+    Ok(views.html.index(messageAndBoard._1, messageAndBoard._2))
+  }
+
+  def move(level: Int, setup: String) = Action {
     val messageAndBoard = moveImpl("is unbeatable", setup)
     Ok(views.html.index(messageAndBoard._1, messageAndBoard._2))
   }

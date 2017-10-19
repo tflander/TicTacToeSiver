@@ -1,7 +1,7 @@
 
 GET     /                           controllers.Application.index
-GET     /ttt/                       controllers.Application.index
-GET     /ttt/:setup                 controllers.Application.move(setup: String)
+GET     /:level/                    controllers.Application.newGame(level: Int)
+GET     /:level/:setup              controllers.Application.move(level: Int, setup: String)
 
 GET     /aibuilder					controllers.AiBuilder.index
 GET     /aibuilder/:rule            controllers.AiBuilder.execRule(rule)
