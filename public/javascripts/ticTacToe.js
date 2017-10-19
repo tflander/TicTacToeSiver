@@ -13,6 +13,9 @@ function allowClickOnEmptyCells() {
 			$(this).removeClass().addClass("O").html("O");
 			var cells = $(".ticTacToe").text().replace(/ /g, "");
 			var baseUrl = document.location.href.substr(0, document.location.href.lastIndexOf("/"));
+			if(baseUrl.endsWith("0")) {
+                baseUrl += "/ttt"
+            }
 			document.location.href = baseUrl + "/" + gameMode() + cells;
 		}
 	});

@@ -1,5 +1,6 @@
 
-GET     /ttt/                        controllers.Application.index
+GET     /                           controllers.Application.index
+GET     /ttt/                       controllers.Application.index
 GET     /ttt/:setup                 controllers.Application.move(setup: String)
 
 GET     /aibuilder					controllers.AiBuilder.index

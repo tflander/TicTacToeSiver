@@ -13,7 +13,7 @@ class ApplicationSpec extends PlaySpec with OneAppPerTest {
   "TieTacToe" should {
 
     "render a board for a new game" in {
-      val newGame = route(app, FakeRequest(GET, "/ttt/")).get
+      val newGame = route(app, FakeRequest(GET, "/")).get
 
       status(newGame) mustBe OK
       contentType(newGame) mustBe Some("text/html")
