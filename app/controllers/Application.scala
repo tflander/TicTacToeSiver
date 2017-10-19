@@ -11,20 +11,18 @@ import play.api.Logger
 @Singleton
 class Application @Inject() extends Controller {
 
-  import controllers.support.LevelToAiTranslator._
-
   def index = Action {
-    val messageAndBoard = moveImpl(aiFor(1), "AAAAAAAAA")
+    val messageAndBoard = moveImpl("is unbeatable", "AAAAAAAAA")
     Ok(views.html.index(messageAndBoard._1, messageAndBoard._2))
   }
 
  def newGame(level: Int) = Action {
-    val messageAndBoard = moveImpl(aiFor(level), "AAAAAAAAA")
+    val messageAndBoard = moveImpl("is unbeatable", "AAAAAAAAA")
     Ok(views.html.index(messageAndBoard._1, messageAndBoard._2))
   }
 
   def move(level: Int, setup: String) = Action {
-    val messageAndBoard = moveImpl(aiFor(level), setup)
+    val messageAndBoard = moveImpl("is unbeatable", setup)
     Ok(views.html.index(messageAndBoard._1, messageAndBoard._2))
   }
   
