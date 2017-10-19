@@ -22,15 +22,22 @@ class ApplicationSpec extends PlaySpec with OneAppPerTest {
 
     }
 
-    "render a board with the computer going first for a new game" in {
-      val newGame = route(app, FakeRequest(GET, "/ttt/")).get
+    "render a board with the computer going first for a new unbeatable game" in {
+      val newGame = route(app, FakeRequest(GET, "/1/")).get
 
       val page = pageAsXml(newGame)
       board(page).matches("X")
     }
 
-    "X blocks the win for a game in progress" in {
-      val newGame = route(app, FakeRequest(GET, "/ttt/AAOXOXAAA")).get
+    "render a board with the computer going first for a new easier game" in {
+      val newGame = route(app, FakeRequest(GET, "/2/")).get
+
+      val page = pageAsXml(newGame)
+      board(page).matches("X")
+    }
+
+    "unbeatabe X blocks the win for a game in progress" in {
+      val newGame = route(app, FakeRequest(GET, "/1/AAOXOXAAA")).get
 
       implicit val page = pageAsXml(newGame)
       board mustBe("..OXOXX..")
