@@ -5,7 +5,7 @@ import play.api.test.Helpers._
 
 import scala.collection.immutable
 import scala.concurrent.Future
-import scala.xml.{Elem, Node}
+import scala.xml.{Elem, Node, NodeSeq}
 
 
 class ApplicationSpec extends PlaySpec with OneAppPerTest {
@@ -21,7 +21,7 @@ class ApplicationSpec extends PlaySpec with OneAppPerTest {
       pageHeading(page) mustBe("Unbeatable Tic Tac Toe")
 
     }
-
+    
     "render a board with the computer going first for a new unbeatable game" in {
       val newGame = route(app, FakeRequest(GET, "/1/")).get
 
@@ -32,9 +32,18 @@ class ApplicationSpec extends PlaySpec with OneAppPerTest {
 
     "render a board with the computer going first for a new easier game" in {
       val newGame = route(app, FakeRequest(GET, "/2/")).get
+      implicit val page = pageAsXml(newGame)
+      println (board)
+      board.contains("X") mustBe true
+    }
+    "render buttons to create a new game" in {
+      val newGame = route(app, FakeRequest(GET, "/")).get
 
-      val page = pageAsXml(newGame)
-      board(page).matches("X")
+      status(newGame) mustBe OK
+      contentType(newGame) mustBe Some("text/html")
+      implicit val page = pageAsXml(newGame)
+      buttonLabels mustBe(Seq("New Game (You First)", "New Game (Me First)"))
+
     }
 
     "unbeatabe X blocks the win for a game in progress" in {
@@ -48,6 +57,11 @@ class ApplicationSpec extends PlaySpec with OneAppPerTest {
 
   private def pageHeading(implicit page: Elem) = {
     (page \\ "h1" text)
+  }
+
+  private def buttonLabels(implicit page: Elem) = {
+    val buttons = (page \\ "input")
+    buttons.map(button => button.attribute("value")).flatten.map(node => node.text)
   }
 
   private def board(implicit page: Elem) = {
