@@ -8,7 +8,7 @@ import ticTacToe.ai.SmarterAi
 class GameTest extends FunSpec with ShouldMatchers {
 
   var game: Game = _
-  val runsPerTest = 10000
+  val runsPerTest = 1 // 10000
 
   it("never loses as X") {
     def play = {
