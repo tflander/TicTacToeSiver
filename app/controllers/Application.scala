@@ -21,7 +21,7 @@ class Application @Inject() extends Controller {
     Ok(views.html.index(messageAndBoard._1, messageAndBoard._2))
   }
   
-  def moveImpl(level: Int, setup: String): (String, Board) = {
+  def moveImpl(level: String, setup: String): (String, Board) = {
     val result = MoveGenerator.moveUsingAi(level, setup)
 
     val winnerOrNot = result._1
