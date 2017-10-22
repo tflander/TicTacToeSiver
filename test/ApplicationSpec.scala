@@ -5,7 +5,7 @@ import play.api.test.Helpers._
 
 import scala.collection.immutable
 import scala.concurrent.Future
-import scala.xml.{Elem, Node}
+import scala.xml.{Elem, Node, NodeSeq}
 
 
 class ApplicationSpec extends PlaySpec with OneAppPerTest {
@@ -19,6 +19,16 @@ class ApplicationSpec extends PlaySpec with OneAppPerTest {
       contentType(newGame) mustBe Some("text/html")
       val page = pageAsXml(newGame)
       pageHeading(page) mustBe("Unbeatable Tic Tac Toe")
+
+    }
+
+    "render buttons to create a new game" in {
+      val newGame = route(app, FakeRequest(GET, "/")).get
+
+      status(newGame) mustBe OK
+      contentType(newGame) mustBe Some("text/html")
+      implicit val page = pageAsXml(newGame)
+      buttonLabels mustBe(Seq("New Game (You First)", "New Game (Me First)"))
 
     }
 
@@ -41,6 +51,11 @@ class ApplicationSpec extends PlaySpec with OneAppPerTest {
 
   private def pageHeading(implicit page: Elem) = {
     (page \\ "h1" text)
+  }
+
+  private def buttonLabels(implicit page: Elem) = {
+    val buttons = (page \\ "input")
+    buttons.map(button => button.attribute("value")).flatten.map(node => node.text)
   }
 
   private def board(implicit page: Elem) = {
